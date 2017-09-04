@@ -11,4 +11,6 @@ RUN apk --no-cache add curl bc wget \
  && mkdir -p /opt/prometheus/jmx \
  && wget -qO /opt/prometheus/jmx/prometheus_javaagent.jar ${PROM_JMX_AGENT_URL}/${PROM_JMX_AGENT_VER}/jmx_prometheus_javaagent-${PROM_JMX_AGENT_VER}.jar \
  && apk --no-cache del curl wget
-COPY opt/qnib/entry/*.env /opt/qnib/entry/
+COPY opt/qnib/entry/*.sh \
+     opt/qnib/entry/*.env \
+     /opt/qnib/entry/
