@@ -6,7 +6,8 @@ ARG PROM_JMX_AGENT_URL=https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prom
 LABEL prometheus.jmx.agent.version=${PROM_JMX_AGENT_VER}
 ENV PROMETHEUS_PORT=7071 \
     JMX_PORT=1234 \
-    ENTRYPOINTS_DIR=/opt/qnib/entry
+    ENTRYPOINTS_DIR=/opt/qnib/entry \
+    PROMETHEUS_JMX_PROFILE=default
 RUN apk --no-cache add curl bc wget \
  && mkdir -p /opt/prometheus/jmx \
  && wget -qO /opt/prometheus/jmx/prometheus_javaagent.jar ${PROM_JMX_AGENT_URL}/${PROM_JMX_AGENT_VER}/jmx_prometheus_javaagent-${PROM_JMX_AGENT_VER}.jar \
@@ -14,3 +15,4 @@ RUN apk --no-cache add curl bc wget \
 COPY opt/qnib/entry/*.sh \
      opt/qnib/entry/*.env \
      /opt/qnib/entry/
+COPY opt/prometheus/jmx/default.yml /opt/prometheus/jmx/
