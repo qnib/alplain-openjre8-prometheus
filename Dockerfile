@@ -1,8 +1,9 @@
 ARG DOCKER_REGISTRY=docker.io
-FROM ${DOCKER_REGISTRY}/qnib/alplain-openjre8
+FROM ${DOCKER_REGISTRY}/qnib/alplain-openjre8-glibc
 
-ARG PROM_JMX_AGENT_VER=0.10
+ARG PROM_JMX_AGENT_VER=0.1.0
 ARG PROM_JMX_AGENT_URL=https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent
+
 LABEL prometheus.jmx.agent.version=${PROM_JMX_AGENT_VER}
 ENV PROMETHEUS_PORT=7071 \
     JMX_PORT=1234 \
